@@ -4,252 +4,369 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Logrando – Get Set, Get Hired!</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --main-green: #27c7a6;
-      --white: #fff;
-      --black: #222;
-      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --clr-green: #27c7a6;
+      --clr-green-dark: #1f9e89;
+      --clr-white: #ffffff;
+      --clr-black: #0c0c0c;
+      --clr-gray-light: #f7f9f9;
+      --clr-gray-dark: #4a4a4a;
+      --font-primary: 'Poppins', sans-serif;
+      --transition-speed: 0.3s;
+      --border-radius: 12px;
+      --max-width: 1100px;
     }
+
     * {
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
+
     body {
       margin: 0;
-      font-family: var(--font-family);
-      background-color: var(--main-green);
-      color: var(--black);
+      font-family: var(--font-primary);
+      background-color: var(--clr-gray-light);
+      color: var(--clr-gray-dark);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
+
+    a {
+      text-decoration: none;
+      color: var(--clr-green);
+      transition: color var(--transition-speed);
+    }
+    a:hover {
+      color: var(--clr-green-dark);
+    }
+
     header {
+      background: var(--clr-green);
+      color: var(--clr-white);
+      padding: 60px 20px 80px;
       text-align: center;
-      padding: 40px 20px 30px;
-      color: var(--white);
-      background-color: var(--main-green);
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
     }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, var(--clr-white) 15%, transparent 70%);
+      opacity: 0.1;
+      pointer-events: none;
+      animation: pulse 8s infinite;
+      border-radius: 50%;
+      transform-origin: center center;
+      transform-box: fill-box;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.1;
+      }
+      50% {
+        transform: scale(1.3);
+        opacity: 0.2;
+      }
+    }
+
     .logo {
-      display: block;
-      margin: 0 auto 20px auto;
-      width: 120px;
-      max-width: 90%;
-      height: auto;
+      width: 140px;
+      margin: 0 auto 24px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      background-color: var(--clr-white);
+      padding: 15px;
     }
+
     h1 {
-      margin: 0;
-      font-size: 3rem;
+      font-size: 3.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
       letter-spacing: 3px;
-      font-weight: 900;
-      font-family: 'Arial Black', Gadget, sans-serif;
+      font-family: 'Poppins', sans-serif;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
+
     .tagline {
-      font-size: 1.3rem;
-      font-weight: 500;
-      letter-spacing: 1.2px;
-      margin-top: 8px;
-      color: var(--white);
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 2px;
       font-style: italic;
+      opacity: 0.9;
     }
+
     nav {
-      background: var(--white);
+      background: var(--clr-white);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
       display: flex;
       justify-content: center;
-      gap: 30px;
-      padding: 18px 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-      font-size: 1.2rem;
-      font-weight: 600;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.3s ease;
     }
+
+    nav.scrolled {
+      background: var(--clr-green);
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    }
+
     nav a {
-      color: var(--main-green);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      padding-bottom: 5px;
+      color: var(--clr-green);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0 24px;
+      padding-bottom: 4px;
       border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
-    nav a:hover,
-    nav a:focus {
-      color: var(--black);
-      border-color: var(--main-green);
+
+    nav.scrolled a {
+      color: var(--clr-white);
     }
-    .container {
-      max-width: 960px;
-      margin: 40px auto 60px;
-      background: var(--white);
-      border-radius: 20px;
-      box-shadow: 0 6px 15px rgba(39, 199, 166, 0.2);
-      padding: 40px 30px;
+
+    nav a:hover, nav a:focus {
+      border-color: var(--clr-green);
+      color: var(--clr-green-dark);
     }
-    section + section {
-      margin-top: 60px;
+
+    nav.scrolled a:hover, nav.scrolled a:focus {
+      color: var(--clr-white);
+      border-color: var(--clr-white);
     }
+
+    main {
+      max-width: var(--max-width);
+      margin: 40px auto 100px;
+      padding: 0 20px;
+    }
+
+    section {
+      margin-bottom: 80px;
+    }
+
     h2 {
-      color: var(--main-green);
-      font-size: 2rem;
-      margin-bottom: 22px;
+      font-size: 2.8rem;
+      color: var(--clr-green);
       font-weight: 700;
-      border-left: 6px solid var(--main-green);
-      padding-left: 12px;
+      margin-bottom: 32px;
+      border-left: 8px solid var(--clr-green-dark);
+      padding-left: 16px;
+      letter-spacing: 1px;
     }
-    .services-list {
+
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 36px;
     }
-    .service {
-      background: #f5fefa;
-      border: 2px solid var(--main-green);
-      border-radius: 15px;
-      padding: 24px;
-      box-shadow: 0 0 9px rgba(39, 199, 166, 0.1);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    .service-card {
+      background: var(--clr-white);
+      border-radius: var(--border-radius);
+      padding: 28px 30px;
+      box-shadow: 0 12px 25px rgba(39, 199, 166, 0.17);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: default;
     }
-    .service:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(39, 199, 166, 0.4);
+
+    .service-card:hover {
+      box-shadow: 0 18px 45px rgba(39, 199, 166, 0.34);
+      transform: translateY(-8px);
     }
-    .service h3 {
+
+    .service-card h3 {
       margin-top: 0;
-      color: var(--main-green);
-      font-size: 1.4rem;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      font-size: 1.8rem;
+      color: var(--clr-green-dark);
+      font-weight: 700;
+      letter-spacing: 0.8px;
     }
-    .service p {
-      font-size: 1rem;
-      color: #333;
-      line-height: 1.4;
+
+    .service-card p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: var(--clr-gray-dark);
+      font-weight: 500;
     }
-    .testimonial {
-      background: #f8f8f8;
-      border-left: 5px solid var(--main-green);
-      padding: 18px 22px;
+
+    .testimonial-slider {
+      background: var(--clr-green);
+      border-radius: var(--border-radius);
+      padding: 38px 32px;
+      color: var(--clr-white);
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 12px 35px rgba(15, 112, 94, 0.35);
       font-style: italic;
-      margin-bottom: 18px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      color: #444;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      position: relative;
+      text-align: center;
     }
-    .testimonial:last-child {
-      margin-bottom: 0;
+
+    .testimonial-slider::before, .testimonial-slider::after {
+      content: '"';
+      font-size: 4.5rem;
+      line-height: 1;
+      position: absolute;
+      font-family: 'Georgia', serif;
+      opacity: 0.15;
+      color: var(--clr-white);
     }
-    .contact-form {
+
+    .testimonial-slider::before {
+      top: 12px;
+      left: 16px;
+    }
+
+    .testimonial-slider::after {
+      bottom: 12px;
+      right: 16px;
+    }
+
+    .testimonial-author {
+      margin-top: 24px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 1.1px;
+      color: rgba(255 255 255 / 0.85);
+    }
+
+    #contact form {
       max-width: 480px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 18px;
     }
-    label {
+
+    #contact label {
+      color: var(--clr-green-dark);
       font-weight: 600;
-      color: var(--main-green);
-      display: block;
-      margin-bottom: 6px;
-    }
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      padding: 10px 14px;
-      border-radius: 7px;
-      border: 1.5px solid #ccc;
       font-size: 1rem;
-      resize: vertical;
-      font-family: var(--font-family);
-      transition: border-color 0.3s ease;
     }
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    textarea:focus {
-      outline: none;
-      border-color: var(--main-green);
-      box-shadow: 0 0 8px rgba(39, 199, 166, 0.4);
-    }
-    button {
-      background-color: var(--main-green);
-      color: var(--white);
-      border: none;
-      padding: 14px 20px;
-      border-radius: 8px;
+
+    #contact input, #contact textarea {
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1.8px solid #ccc;
       font-size: 1.1rem;
-      cursor: pointer;
-      font-weight: 700;
-      transition: background-color 0.3s ease;
-      margin-top: 8px;
+      font-family: var(--font-primary);
+      transition: border-color 0.25s ease;
+      resize: vertical;
     }
-    button:hover,
-    button:focus {
-      background-color: var(--black);
+
+    #contact input:focus, #contact textarea:focus {
+      outline: none;
+      border-color: var(--clr-green);
+      box-shadow: 0 0 12px rgba(39, 199, 166, 0.35);
+    }
+
+    #contact button {
+      background: var(--clr-green);
+      color: var(--clr-white);
+      border: none;
+      padding: 16px 24px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    #contact button:hover,
+    #contact button:focus {
+      background: var(--clr-green-dark);
       outline: none;
     }
+
     footer {
-      background: var(--main-green);
+      background: var(--clr-green-dark);
+      color: var(--clr-white);
       text-align: center;
-      padding: 24px 20px;
-      color: var(--white);
-      border-radius: 0 0 20px 20px;
-      font-weight: 600;
-      font-size: 1rem;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
-      user-select: none;
+      padding: 28px 20px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      box-shadow: 0 -3px 12px rgba(0,0,0,0.12);
     }
-    @media (max-width: 600px) {
+
+    @media (max-width: 720px) {
       h1 {
-        font-size: 2.3rem;
-      }
-      nav {
-        font-size: 1rem;
-        gap: 18px;
-        padding: 14px 0;
-      }
-      .container {
-        padding: 30px 20px;
-        margin: 30px 15px 50px;
+        font-size: 2.4rem;
       }
       h2 {
-        font-size: 1.6rem;
+        font-size: 2.2rem;
+        padding-left: 12px;
+        border-left-width: 6px;
       }
-      .services-list {
-        grid-template-columns: 1fr;
-      }
-      button {
-        padding: 12px 16px;
+      nav a {
         font-size: 1rem;
+        margin: 0 14px;
+      }
+      .service-card h3 {
+        font-size: 1.5rem;
+      }
+      .testimonial-slider {
+        font-size: 1.1rem;
+      }
+      #contact button {
+        font-size: 1.1rem;
+        padding: 14px 20px;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
     <img src="A5610372-986A-4B67-BC56-5CA6DA5551E6.jpg" alt="Logrando Logo" class="logo" />
     <h1>LOGRANDO</h1>
     <p class="tagline">Get Set, Get Hired!</p>
   </header>
 
-  <nav>
+  <nav id="navbar">
     <a href="#services">Services</a>
     <a href="#about">About</a>
     <a href="#testimonials">Testimonials</a>
     <a href="#contact">Contact</a>
   </nav>
 
-  <main class="container">
+  <main>
     <section id="services" class="section">
       <h2>Our Services</h2>
-      <div class="services-list">
-        <article class="service">
+      <div class="services-grid">
+        <article class="service-card">
           <h3>LinkedIn Profile Setup</h3>
           <p>Professional, keyword-optimized LinkedIn profiles designed to attract recruiters and boost your visibility.</p>
         </article>
-        <article class="service">
+        <article class="service-card">
           <h3>Naukri Profile Optimization</h3>
           <p>We craft compelling Naukri profiles that showcase your strengths and increase your chances of getting noticed.</p>
         </article>
-        <article class="service">
+        <article class="service-card">
           <h3>ATS Resume Writing</h3>
           <p><strong>ATS-friendly resumes</strong> tailored to your job goals. Stand out and pass automated screening systems with ease.</p>
         </article>
-        <article class="service">
+        <article class="service-card">
           <h3>Portfolio Website Creation</h3>
           <p>Impressive personal websites to present your work, skills, and achievements—all in one link.</p>
         </article>
@@ -263,26 +380,27 @@
 
     <section id="testimonials" class="section">
       <h2>Testimonials</h2>
-      <blockquote class="testimonial">“Logrando helped me land my first interview. The resume was spot-on!” – Anjali, Fresher</blockquote>
-      <blockquote class="testimonial">“Their LinkedIn makeover got me noticed by top recruiters!” – Rahul, Working Professional</blockquote>
-      <blockquote class="testimonial">“Superfast and affordable—highly recommend for students.” – Priya, Final Year Graduate</blockquote>
+      <div class="testimonial-slider" aria-live="polite" aria-atomic="true" id="testimonialText">
+        “Logrando helped me land my first interview. The resume was spot-on!”
+        <div class="testimonial-author">– Anjali, Fresher</div>
+      </div>
     </section>
 
     <section id="contact" class="section">
       <h2>Contact Us</h2>
-      <form class="contact-form" onsubmit="return handleSubmit(event)">
+      <form id="contactForm" aria-label="Contact form" onsubmit="return handleSubmit(event)">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your full name" required />
+        <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" />
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
 
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+        <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
 
         <button type="submit">Send Message</button>
+        <p id="formStatus" role="alert" aria-live="assertive" style="color: var(--clr-green); font-weight: 700; margin-top: 15px; text-align: center;"></p>
       </form>
-      <p id="form-status" style="color: var(--main-green); font-weight: 600; margin-top: 10px; text-align:center;"></p>
     </section>
   </main>
 
@@ -291,13 +409,42 @@
   </footer>
 
   <script>
+    // Simple testimonial slider with auto-change
+    const testimonials = [
+      { text: "“Logrando helped me land my first interview. The resume was spot-on!”", author: "– Anjali, Fresher" },
+      { text: "“Their LinkedIn makeover got me noticed by top recruiters!”", author: "– Rahul, Working Professional" },
+      { text: "“Superfast and affordable—highly recommend for students.”", author: "– Priya, Final Year Graduate" },
+    ];
+    let currentTestimonial = 0;
+    const testimonialEl = document.getElementById('testimonialText');
+
+    function showTestimonial(index) {
+      testimonialEl.innerHTML = `${testimonials[index].text}<div class="testimonial-author">${testimonials[index].author}</div>`;
+    }
+    function nextTestimonial() {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }
+    setInterval(nextTestimonial, 7000);
+
+    // Form submission handler
     function handleSubmit(event) {
       event.preventDefault();
-      const status = document.getElementById('form-status');
+      const status = document.getElementById('formStatus');
       status.textContent = "Thank you for reaching out! We will get back to you shortly.";
       event.target.reset();
       return false;
     }
+
+    // Sticky nav background change on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
   </script>
 </body>
 </html>
